@@ -1,10 +1,4 @@
-﻿CREATE DATABASE QuanLyQuanCafe
-GO
-
-USE QuanLyQuanCafe
-GO
-
--- Food
+﻿-- Food
 -- Table
 -- FoodCategory
 -- Account
@@ -103,5 +97,29 @@ END
 GO
 
 EXEC dbo.USP_GetAccountByUserName @userName = N'K9' -- nvarchar(100)
+GO 
 
---DROP DATABASE DB_Coffee_Shop
+CREATE OR ALTER PROC USP_Login
+@userName nvarchar(100), @passWord nvarchar(100)
+AS
+BEGIN
+	SELECT * FROM dbo.Account WHERE UserName = @userName AND PassWord = @passWord
+END
+GO
+
+
+DECLARE @i INT = 0
+
+WHILE @i <= 10
+BEGIN
+	INSERT dbo.TableFood ( name)VALUES  ( N'Bàn ' + CAST(@i AS nvarchar(100)))
+	SET @i = @i + 1
+END
+
+select * from TableFood
+GO
+--=====PROC LOAD DS BÀN ĂN=============
+CREATE OR ALTER PROC USP_GetTableList
+AS SELECT * FROM TableFood
+GO 
+--====================================

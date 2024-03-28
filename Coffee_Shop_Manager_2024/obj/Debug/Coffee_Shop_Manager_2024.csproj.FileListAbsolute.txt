@@ -8,3 +8,4 @@ D:\Project_HK2_2024\Programming_On_Windows\PROJECT\Coffee_Shop_Manager\Coffee_Sh
 D:\Project_HK2_2024\Programming_On_Windows\PROJECT\Coffee_Shop_Manager\Coffee_Shop_Manager_2024\obj\Debug\Coffee_Shop_Manager_2024.exe
 D:\Project_HK2_2024\Programming_On_Windows\PROJECT\Coffee_Shop_Manager\Coffee_Shop_Manager_2024\obj\Debug\Coffee_Shop_Manager_2024.pdb
 D:\Project_HK2_2024\Programming_On_Windows\PROJECT\Coffee_Shop_Manager\Coffee_Shop_Manager_2024\obj\Debug\Coffee_Shop_Manager_2024.fAccountProfile.resources
+D:\Project_HK2_2024\Programming_On_Windows\PROJECT\Coffee_Shop_Manager\Coffee_Shop_Manager_2024\obj\Debug\Coffee_Shop_Manager_2024.fTableManager.resources

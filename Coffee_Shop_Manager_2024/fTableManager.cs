@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Coffee_Shop_Manager_2024.DAO;
+using Coffee_Shop_Manager_2024.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +17,37 @@ namespace Coffee_Shop_Manager_2024
         public fTableManager()
         {
             InitializeComponent();
+
+            LoadTable();
         }
 
+        #region Method
+        void LoadTable()
+        {
+            List<Table> tableList = TableDAO.Instance.LoadTableList();
+
+            foreach (Table item in tableList)
+            {
+                Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
+                btn.Text = item.Name + Environment.NewLine + item.Status;
+
+                switch (item.Status)
+                {
+                    case "Trống":
+                        btn.BackColor = Color.Aqua;
+                        break;
+                    default:
+                        btn.BackColor = Color.LightPink;
+                        break;
+                }
+
+                flpTable.Controls.Add(btn);
+            }
+        }
+        #endregion
+
+
+        #region Events
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,5 +64,6 @@ namespace Coffee_Shop_Manager_2024
             fAdmin f = new fAdmin();
             f.ShowDialog();
         }
+        #endregion
     }
 }
