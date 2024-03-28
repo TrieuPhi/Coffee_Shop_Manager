@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Coffee_Shop_Manager_2024
 {
-    public partial class Form1 : Form
+    public partial class fAccountProfile : Form
     {
-        public Form1()
+        public fAccountProfile()
         {
             InitializeComponent();
         }
+
+        private void btnExti_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        
     }
 }
