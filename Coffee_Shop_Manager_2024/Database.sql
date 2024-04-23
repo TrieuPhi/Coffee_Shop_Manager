@@ -5,6 +5,7 @@
 -- Bill
 -- BillInfo
 
+
 CREATE TABLE TableFood
 (
 	id INT IDENTITY PRIMARY KEY,
@@ -119,130 +120,57 @@ END
 
 select * from TableFood
 GO
+
 --=====PROC LOAD DS BÀN ĂN=============
 CREATE OR ALTER PROC USP_GetTableList
 AS SELECT * FROM TableFood
 GO 
 Exec USP_GetTableList
 --====================================
+UPDATE dbo.TableFood SET STATUS = N'Có người' WHERE id = 9
 
+
+--===========Bắt đầu đoạn hiển thị hóa đơn theo bàn. 
 -- thêm category
-INSERT dbo.FoodCategory
-        ( name )
-VALUES  ( N'Hải sản'  -- name - nvarchar(100)
-          )
-INSERT dbo.FoodCategory
-        ( name )
-VALUES  ( N'Nông sản' )
-INSERT dbo.FoodCategory
-        ( name )
-VALUES  ( N'Lâm sản' )
-INSERT dbo.FoodCategory
-        ( name )
-VALUES  ( N'Sản sản' )
-INSERT dbo.FoodCategory
-        ( name )
-VALUES  ( N'Nước' )
+INSERT INTO dbo.FoodCategory (name)
+VALUES 
+    (N'Hải sản'),
+    (N'Nông sản'),
+    (N'Lâm sản'),
+    (N'Sản sản'),
+    (N'Nước');
+
 
 -- thêm món ăn
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Mực một nắng nước sa tế', -- name - nvarchar(100)
-          1, -- idCategory - int
-          120000)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Nghêu hấp xả', 1, 50000)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Dú dê nướng sữa', 2, 60000)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Heo rừng nướng muối ớt', 3, 75000)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Cơm chiên mushi', 4, 999999)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'7Up', 5, 15000)
-INSERT dbo.Food
-        ( name, idCategory, price )
-VALUES  ( N'Cafe', 5, 12000)
+INSERT INTO dbo.Food (name, idCategory, price)
+VALUES 
+    (N'Mực một nắng nước sa tế', 1, 120000),
+    (N'Nghêu hấp xả', 1, 50000),
+    (N'Dú dê nướng sữa', 2, 60000),
+    (N'Heo rừng nướng muối ớt', 3, 75000),
+    (N'Cơm chiên mushi', 4, 999999),
+    (N'7Up', 5, 15000),
+    (N'Cafe', 5, 12000);
+
 
 -- thêm bill
-INSERT	dbo.Bill
-        ( DateCheckIn ,
-          DateCheckOut ,
-          idTable ,
-          status
-        )
-VALUES  ( GETDATE() , -- DateCheckIn - date
-          NULL , -- DateCheckOut - date
-          3 , -- idTable - int
-          0  -- status - int
-        )
-        
-INSERT	dbo.Bill
-        ( DateCheckIn ,
-          DateCheckOut ,
-          idTable ,
-          status
-        )
-VALUES  ( GETDATE() , -- DateCheckIn - date
-          NULL , -- DateCheckOut - date
-          4, -- idTable - int
-          0  -- status - int
-        )
-INSERT	dbo.Bill
-        ( DateCheckIn ,
-          DateCheckOut ,
-          idTable ,
-          status
-        )
-VALUES  ( GETDATE() , -- DateCheckIn - date
-          GETDATE() , -- DateCheckOut - date
-          5 , -- idTable - int
-          1  -- status - int
-        )
+INSERT INTO dbo.Bill (DateCheckIn, DateCheckOut, idTable, status)
+VALUES 
+    (GETDATE(), NULL, 3, 0),
+    (GETDATE(), NULL, 4, 0),
+    (GETDATE(), GETDATE(), 5, 1);
 
+        
 -- thêm bill info
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 1, -- idBill - int
-          1, -- idFood - int
-          2  -- count - int
-          )
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 1, -- idBill - int
-          3, -- idFood - int
-          4  -- count - int
-          )
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 2, -- idBill - int
-          5, -- idFood - int
-          1  -- count - int
-          )
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 1, -- idBill - int
-          1, -- idFood - int
-          2  -- count - int
-          )
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 2, -- idBill - int
-          6, -- idFood - int
-          2  -- count - int
-          )
-INSERT	dbo.BillInfo
-        ( idBill, idFood, count )
-VALUES  ( 3, -- idBill - int
-          5, -- idFood - int
-          2  -- count - int
-          )                   
-GO
+INSERT INTO dbo.BillInfo (idBill, idFood, count)
+VALUES 
+    (1, 1, 2),
+    (1, 3, 4),
+    (2, 5, 1),
+    (2, 1, 2),
+    (3, 6, 2),
+    (3, 5, 2);
+
 
 Select * from Bill
 select * from BillInfo 
